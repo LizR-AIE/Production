@@ -2,10 +2,10 @@ var Mouse = function()
 {
 	var self = this;
 	
-	window.addEventListener('mousemove', function(evt) { self.onMouseUpdate(evt); }, false);
-	window.addEventListener('mouseenter', function(evt) { self.onMouseUpdate(evt); }, false);
-	window.addEventListener('onmousedown', function(evt) { self.onMouseDown(evt); }, false);
-	window.addEventListener('onmouseup', function(evt) { self.onMouseUp(evt); }, false);
+	window.addEventListener('mousemove', 	function(evt) { self.onMouseUpdate	(evt); }, false);
+	window.addEventListener('mouseenter', 	function(evt) { self.onMouseUpdate	(evt); }, false);
+	window.addEventListener('onmousedown', 	function(evt) { self.onMouseDown	(evt); }, false);
+	window.addEventListener('onmouseup', 	function(evt) { self.onMouseUp		(evt); }, false);
 	
 	var x = 0;
 	var y = 0;
