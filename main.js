@@ -58,11 +58,35 @@ var SCREEN_WIDTH = canvas.width;
 var SCREEN_HEIGHT = canvas.height;
 
 var keyboard = new Keyboard();
+//var background = new Background(BACKGROUNDCOLOR_DARKPURPLE);
 
 var stateManager = new StateManager();
 
 stateManager.pushState( new SplashState() );
 
+// load the texture that we will use to as a tiled backgrounds
+var background = {}
+background.image = document.createElement("img");
+background.image.src = "./Downloads/spaceshooter/Backgrounds/darkPurple.png";
+background.width = 256;
+background.height = 256;
+
+// create an array to hold all of the instances of the backgrounds texture
+var backgrounds = [];
+
+// populate the backgrounds array with the backgrounds texture
+for(var y = 0; y < (SCREEN_HEIGHT / background.height)+1; y++)
+{
+	backgrounds[y] = [];
+	for(var x = 0; x < (SCREEN_WIDTH / background.width)+1; x++)
+	{
+		backgrounds[y][x] = new Vector2();
+		backgrounds[y][x].x = x * background.width;
+		backgrounds[y][x].y = (y-1) * background.height;
+		//console.log(backgrounds[y][x].y);
+	}
+}
+console.log(backgrounds.length);
 //--------------------
 // Functions
 //--------------------
@@ -75,8 +99,32 @@ function run()
 	
 	var deltaTime = getDeltaTime();
 	
+	for(var y = 0; y < (SCREEN_HEIGHT / background.height)+1; y++)
+	{
+		for(var x = 0; x < (SCREEN_WIDTH / background.width)+1; x++)
+		{
+			backgrounds[y][x].y += 50 * deltaTime;
+			if(backgrounds[y][x].y > SCREEN_HEIGHT)
+			{
+				backgrounds[y][x].y -= (background.height * 5)
+			}
+		}
+	}
+	
+	
+	//background.update(deltaTime);
 	stateManager.update(deltaTime);
 	
+	// first we draw the background so that it is below everything else
+	for(var y = 0; y < (SCREEN_HEIGHT / background.height)+1; y++)
+	{
+		for(var x = 0; x < (SCREEN_WIDTH / background.width)+1; x++)
+		{
+			context.drawImage(background.image, backgrounds[y][x].x, backgrounds[y][x].y);
+		}
+	}
+	
+	//background.draw();
 	stateManager.draw();
 			
 	if(DEBUG == 1)

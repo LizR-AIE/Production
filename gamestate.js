@@ -26,7 +26,7 @@ GameState.prototype.update = function(dt)
 
 GameState.prototype.draw = function() 
 {
-	context.font="72px Verdana";	
+	context.font="72px KenFuture";	
 	context.fillStyle = "#FF0";	
 	var width = context.measureText("GAME STATE").width;
 	context.fillText("GAME STATE", SCREEN_WIDTH/2 - width/2, SCREEN_HEIGHT/2);		
@@ -34,7 +34,7 @@ GameState.prototype.draw = function()
 	
 	if( this.delay <= 0 )
 	{
-		context.font="18px Verdana";	
+		context.font="18px KenFuture";	
 		context.fillStyle = "#000";	
 		width = context.measureText("Press SPACE to Continue.").width;
 		context.fillText("Press SPACE to Continue.", SCREEN_WIDTH/2 - width/2, 300);
@@ -44,7 +44,7 @@ GameState.prototype.draw = function()
 		var time = Math.floor(this.delay);
 		var decimal = Math.floor(this.delay * 10) - time*10;
 	
-		context.font="18px Verdana";	
+		context.font="18px KenFuture";	
 		context.fillStyle = "#000";		
 		width = context.measureText(time + "." + decimal).width;
 		context.fillText(time + "." + decimal, SCREEN_WIDTH/2 - width/2, 300);
