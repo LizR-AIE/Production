@@ -5,7 +5,7 @@ var BACKGROUNDCOLOR_PURPLE = 3;
 
 var Background = function(backgroundColor)
 {
-	this.speed = 100;
+	this.speed = 50;
 	
 	this.width = 256;
 	this.height = 256;
@@ -27,37 +27,41 @@ var Background = function(backgroundColor)
 			break;
 	}
 	
-	this.backgrounds = [];
-	for(var y = 0; y < SCREEN_HEIGHT / this.height; y++)
+	this.backgroundPositions = [];
+	for(var y = 0; y < (SCREEN_HEIGHT / this.height) + 1; y++)
 	{
-		this.backgrounds[y] = [];
-		for(var x = 0; x < SCREEN_WIDTH / this.width; x++)
+		this.backgroundPositions[y] = [];
+		for(var x = 0; x < (SCREEN_WIDTH / this.width) + 1; x++)
 		{
-			this.backgrounds[y][x] = this.image;
-			this.backgrounds[y][x].x = x * this.width;
-			this.backgrounds[y][x].y = y * this.height;
+			this.backgroundPositions[y][x] = new Vector2();
+			this.backgroundPositions[y][x].x = x * this.width;
+			this.backgroundPositions[y][x].y = (y-1) * this.height;
 		}
 	}
 }
 
 Background.prototype.update = function(deltaTime)
 {
-	for(var y = 0; y < this.backgrounds.length; y++)
+	for(var y = 0; y < this.backgroundPositions.length; y++)
 	{
-		for(var x = 0; x < this.backgrounds[y].length; x++)
+		for(var x = 0; x < this.backgroundPositions[y].length; x++)
 		{
-			this.backgrounds[y][x].y -= this.speed * deltaTime;
+			this.backgroundPositions[y][x].y += this.speed * deltaTime;
+			if(this.backgroundPositions[y][x].y > SCREEN_HEIGHT)
+			{
+				this.backgroundPositions[y][x].y -= this.height * 5;
+			}
 		}
 	}
 }
 
 Background.prototype.draw = function()
 {
-	for(var y = 0; y < this.backgrounds.length; y++)
+	for(var y = 0; y < (SCREEN_HEIGHT / this.height) + 1; y++)
 	{
-		for(var x = 0; x < this.backgrounds[y].length; x++)
+		for(var x = 0; x < (SCREEN_WIDTH / this.width) + 1; x++)
 		{
-			context.drawImage(this.image, this.backgrounds[y][x].x, this.backgrounds[y][x].y);
+			context.drawImage(this.image, this.backgroundPositions[y][x].x, this.backgroundPositions[y][x].y);
 		}
 	}
 }

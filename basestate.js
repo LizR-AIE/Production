@@ -18,3 +18,7 @@ BaseState.prototype.update = function(dt)
 BaseState.prototype.draw = function() 
 {
 }
+
+BaseState.prototype.reset = function()
+{
+}

@@ -8,6 +8,11 @@ var Keyboard = function()
 	this.keyListeners = new Array();
 	this.keys = new Array();
 	
+	for(var i = 0; i < 256; i++)
+	{
+		this.keys[i] = false;
+	}
+	
 	this.KEY_SHIFT = 16;
 	this.KEY_SPACE = 32;
 	
