@@ -14,10 +14,7 @@ var Player = function()
 	
 	// Rotation
 	this.rotation = 0;
-	
-	// Angular Velocity
-	this.angularVelocity = 0;
-	
+		
 	// Velocity
 	this.velocity = new Vector2();
 	
@@ -29,9 +26,13 @@ var Player = function()
 	
 	// Lasers
 	this.lasers = [];
+	
+	// Shoot timer
+	this.shootTimer = 0;
+	this.shootTime = 0.15;
 }
 
-Player.prototype.checkInput = function()
+Player.prototype.checkInput = function(dt)
 {
 	// Move Left
 	if(keyboard.isKeyDown(keyboard.KEY_A))
@@ -65,8 +66,11 @@ Player.prototype.checkInput = function()
 	this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - (3.142/2);
 	
 	// Shoot
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE)) 
+	this.shootTimer -= dt;
+	
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE) && this.shootTimer <= 0) 
 	{
+		this.shootTimer = this.shootTime;
 		this.lasers.push(new Laser(this.position.x, this.position.y, this.rotation));
 	}
 }
@@ -107,7 +111,7 @@ Player.prototype.clampToScreen = function()
 
 Player.prototype.update = function(dt)
 {
-	this.checkInput();
+	this.checkInput(dt);
 	
 	this.updatePositionAndRotation(dt);
 	

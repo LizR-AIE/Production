@@ -9,16 +9,22 @@ var Laser = function(playerX, playerY, rotation)
 	this.position.set(playerX, playerY);
 	
 	// Rotation
-	this.rotation = rotation;
+	this.rotation = rotation - (3.14159/2);
 	
 	// Speed
-	this.speed = 50;
+	this.speed = 35;
 	
 	// Velocity
+	var direction = new Vector2();
+	direction.x = Math.cos(this.rotation);
+	direction.y = Math.sin(this.rotation);
+	
 	this.velocity = new Vector2();	
-	this.velocity.set(Math.cos(this.rotation - (3.142/2)), Math.sin(this.rotation) - (3.142/2));
-	//this.velocity.x *= this.speed;
-	//this.velocity.x *= this.speed;
+	this.velocity.set(Math.cos(this.rotation), Math.sin(this.rotation));
+	this.velocity.x *= this.speed;
+	this.velocity.y *= this.speed;
+	
+	this.rotation += 3.14159/2;
 	
 	// Dimensions
 	this.dimension = new Vector2();
