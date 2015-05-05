@@ -6,7 +6,7 @@ var Player = function()
 		
 	// Width and Height
 	this.dimension = new Vector2();
-	this.dimension.set(99, 75);
+	this.dimension.set(99/2, 75/2);
 	
 	// Position
 	this.position = new Vector2();
@@ -72,6 +72,17 @@ Player.prototype.checkInput = function(dt)
 
 Player.prototype.updatePositionAndRotation = function(dt)
 {
+	var mouseX = mouse.getMouseX();
+	var mouseY = mouse.getMouseY();
+	
+	var direction = new Vector2();
+	direction.set(this.position.x - mouseX, this.position.y - mouseY);
+	
+	var distance = direction.magnitude();
+	
+	this.position.set(mouse.getMouseX(), mouse.getMouseY());
+	
+	
 	//var mouseX = mouse.getMouseX();
 	//var mouseY = mouse.getMouseY();
 	//
@@ -139,7 +150,7 @@ Player.prototype.draw = function()
 	context.save();			
 		context.translate(this.position.x, this.position.y);
 		context.rotate(this.rotation);
-		context.drawImage(this.image, -this.dimension.x/2, -this.dimension.y/2); 	
+		context.drawImage(this.image, -this.dimension.x/2, -this.dimension.y/2, this.dimension.x/1, this.dimension.y/1); 	
 	context.restore();
 }
 
