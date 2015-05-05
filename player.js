@@ -22,7 +22,7 @@ var Player = function()
 	this.strafeSpeed = 400;
 	this.forwardSpeed = 500;
 	this.backwardSpeed = 250;
-	this.rotationSpeed = 50;
+	this.rotationSpeed = 50; 
 	
 	// Lasers
 	this.lasers = [];
@@ -59,12 +59,7 @@ Player.prototype.checkInput = function(dt)
 				this.velocity.y += this.backwardSpeed;
 		}
 	}
-	// Rotate
-	var mouseX = mouse.getMouseX();
-	var mouseY = mouse.getMouseY();
-	
-	this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - (3.142/2);
-	
+		
 	// Shoot
 	this.shootTimer -= dt;
 	
@@ -77,16 +72,32 @@ Player.prototype.checkInput = function(dt)
 
 Player.prototype.updatePositionAndRotation = function(dt)
 {
-	// Update position based on velocity	
-	var s = Math.sin(this.rotation);
-	var c = Math.cos(this.rotation);
-	
-	var xVel = (this.velocity.x * c) - (this.velocity.y * s);
-	var yVel = (this.velocity.x * s) + (this.velocity.y * c);
-			
-	this.position.x += xVel * dt;
-	this.position.y += yVel * dt;
-
+	//var mouseX = mouse.getMouseX();
+	//var mouseY = mouse.getMouseY();
+	//
+	//var precision = 7;
+	//if(Math.abs(this.position.x - mouseX) < precision && Math.abs(this.position.y - mouseY) < precision)
+	//{
+	//	this.velocity.set(0,0);
+	//	return;
+	//}
+	//
+	//// Update position based on velocity	
+	//var s = Math.sin(this.rotation);
+	//var c = Math.cos(this.rotation);
+	//
+	//var xVel = (this.velocity.x * c) - (this.velocity.y * s);
+	//var yVel = (this.velocity.x * s) + (this.velocity.y * c);
+	//
+	//this.position.x += xVel * dt;
+	//this.position.y += yVel * dt;
+	//
+	//// Rotate
+	//var mouseX = mouse.getMouseX();
+	//var mouseY = mouse.getMouseY();
+	//
+	//this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - 1.57079632679;
+	//
 	this.velocity.set(0,0);
 }
 

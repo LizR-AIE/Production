@@ -9,7 +9,7 @@ var Laser = function(playerX, playerY, rotation)
 	this.position.set(playerX, playerY);
 	
 	// Rotation
-	this.rotation = rotation - (3.14159/2);
+	this.rotation = rotation - 1.57079632679;
 	
 	// Speed
 	this.speed = 35;
@@ -24,7 +24,7 @@ var Laser = function(playerX, playerY, rotation)
 	this.velocity.x *= this.speed;
 	this.velocity.y *= this.speed;
 	
-	this.rotation += 3.14159/2;
+	this.rotation += 1.57079632679;
 	
 	// Dimensions
 	this.dimension = new Vector2();

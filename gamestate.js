@@ -3,7 +3,6 @@ var GameState = function()
 {
 	this.prototype = BaseState;
 	this.player = new Player();
-	this.laser = new Laser(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0, 0);
 }
 
 GameState.prototype.load = function() 
@@ -19,7 +18,7 @@ GameState.prototype.unload = function()
 GameState.prototype.update = function(dt) 
 {
 	this.player.update(dt);
-	this.laser.update(dt);
+		
 	//if( this.delay > 0 )
 	//	this.delay -= dt;
     //
@@ -32,7 +31,6 @@ GameState.prototype.update = function(dt)
 GameState.prototype.draw = function() 
 {
 	this.player.draw();
-	this.laser.draw();
 	//context.font="72px KenFuture";	
 	//context.fillStyle = "#FF0";	
 	//var width = context.measureText("GAME STATE").width;
