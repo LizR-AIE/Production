@@ -74,41 +74,46 @@ Player.prototype.updatePositionAndRotation = function(dt)
 {
 	var mouseX = mouse.getMouseX();
 	var mouseY = mouse.getMouseY();
-	
+		
 	var direction = new Vector2();
 	direction.set(this.position.x - mouseX, this.position.y - mouseY);
 	
 	var distance = direction.magnitude();
 	
-	this.position.set(mouse.getMouseX(), mouse.getMouseY());
+	
+	var precision = 7;
+	if(	Math.abs(this.position.x - mouseX) < precision && 
+		Math.abs(this.position.y - mouseY) < precision &&
+		this.velocity.y < 0)
+	{
+		this.velocity.y = 0;
+	}
 	
 	
-	//var mouseX = mouse.getMouseX();
-	//var mouseY = mouse.getMouseY();
-	//
-	//var precision = 7;
-	//if(Math.abs(this.position.x - mouseX) < precision && Math.abs(this.position.y - mouseY) < precision)
-	//{
-	//	this.velocity.set(0,0);
-	//	return;
-	//}
-	//
-	//// Update position based on velocity	
-	//var s = Math.sin(this.rotation);
-	//var c = Math.cos(this.rotation);
-	//
-	//var xVel = (this.velocity.x * c) - (this.velocity.y * s);
-	//var yVel = (this.velocity.x * s) + (this.velocity.y * c);
-	//
-	//this.position.x += xVel * dt;
-	//this.position.y += yVel * dt;
-	//
-	//// Rotate
-	//var mouseX = mouse.getMouseX();
-	//var mouseY = mouse.getMouseY();
-	//
-	//this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - 1.57079632679;
-	//
+	// Update position based on velocity	
+	var s = Math.sin(this.rotation);
+	var c = Math.cos(this.rotation);
+	
+	var xVel = (this.velocity.x * c) - (this.velocity.y * s);
+	var yVel = (this.velocity.x * s) + (this.velocity.y * c);
+	
+	this.position.x += xVel * dt;
+	this.position.y += yVel * dt;
+	
+	// Rotate																			PI/2
+	this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - 1.57079632679;
+	
+	if(this.velocity.y == 0)
+	{
+		var newDirection = new Vector2();
+		newDirection.set(this.position.x - mouseX, this.position.y - mouseY);
+			console.log(newDirection.magnitude())
+		newDirection.normalize();
+		newDirection.multiplyScalar(distance);
+			
+		this.position.set(mouseX + newDirection.x, mouseY + newDirection.y);
+	}
+	
 	this.velocity.set(0,0);
 }
 

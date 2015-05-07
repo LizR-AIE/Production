@@ -12,7 +12,7 @@ Vector2.prototype.set = function(x,y)
 
 Vector2.prototype.normalize = function()
 {
-	var len = sqrt(this.x*this.x + this.y*this.y);
+	var len = this.magnitude();
 	this.x /= len;
 	this.y /= len;
 }
