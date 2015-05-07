@@ -72,15 +72,16 @@ Player.prototype.checkInput = function(dt)
 
 Player.prototype.updatePositionAndRotation = function(dt)
 {
+	// Get mouse position
 	var mouseX = mouse.getMouseX();
 	var mouseY = mouse.getMouseY();
-		
+	
+	// Get the distance from the mouse
 	var direction = new Vector2();
 	direction.set(this.position.x - mouseX, this.position.y - mouseY);
-	
 	var distance = direction.magnitude();
 	
-	
+	// Stops the player going past the mouse
 	var precision = 7;
 	if(	Math.abs(this.position.x - mouseX) < precision && 
 		Math.abs(this.position.y - mouseY) < precision &&
@@ -103,6 +104,7 @@ Player.prototype.updatePositionAndRotation = function(dt)
 	// Rotate																			PI/2
 	this.rotation = Math.atan2(this.position.y - mouseY, this.position.x - mouseX) - 1.57079632679;
 	
+	// A work around to stop the player spiralling away from the mouse
 	if(this.velocity.y == 0)
 	{
 		var newDirection = new Vector2();

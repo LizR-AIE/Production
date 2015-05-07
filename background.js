@@ -42,6 +42,7 @@ var Background = function(backgroundColor)
 
 Background.prototype.update = function(deltaTime)
 {
+	/* Scrolling background
 	for(var y = 0; y < this.backgroundPositions.length; y++)
 	{
 		for(var x = 0; x < this.backgroundPositions[y].length; x++)
@@ -53,6 +54,7 @@ Background.prototype.update = function(deltaTime)
 			}
 		}
 	}
+	*/
 }
 
 Background.prototype.draw = function()
