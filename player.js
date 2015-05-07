@@ -109,7 +109,7 @@ Player.prototype.updatePositionAndRotation = function(dt)
 	{
 		var newDirection = new Vector2();
 		newDirection.set(this.position.x - mouseX, this.position.y - mouseY);
-			console.log(newDirection.magnitude())
+		
 		newDirection.normalize();
 		newDirection.multiplyScalar(distance);
 			
@@ -147,7 +147,7 @@ Player.prototype.update = function(dt)
 	this.clampToScreen();
 	
 	this.lasers.update();
-	this.lasers.checkLasers();
+	this.lasers.removeIfOutsideCanvas();
 }
 
 Player.prototype.draw = function()
