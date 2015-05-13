@@ -45,7 +45,7 @@ Array.prototype.draw = function()
 	}
 }
 
-Array.prototype.checkLasers = function()
+Array.prototype.removeIfOutsideCanvas = function()
 {
 	for(var i = 0; i < this.length; i++)
 	{

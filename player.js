@@ -90,7 +90,6 @@ Player.prototype.updatePositionAndRotation = function(dt)
 		this.velocity.y = 0;
 	}
 	
-	
 	// Update position based on velocity	
 	var s = Math.sin(this.rotation);
 	var c = Math.cos(this.rotation);

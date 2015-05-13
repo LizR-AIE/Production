@@ -17,6 +17,7 @@ GameState.prototype.unload = function()
 
 GameState.prototype.update = function(dt) 
 {
+	console.log("hello")
 	this.player.update(dt);
 		
 	//if( this.delay > 0 )

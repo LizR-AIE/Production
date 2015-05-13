@@ -21,8 +21,8 @@ SplashState.prototype.update = function(dt)
 	//if( keyboard.isKeyDown( keyboard.KEY_SPACE ) == true )
 	if(this.splashTimer <= 0)
 	{
-		stateManager.switchState( new MenuState() );
-		//stateManager.switchState( new GameState() );
+		//stateManager.switchState( new MenuState() );
+		stateManager.switchState( new GameState() );
 	}
 }
 
