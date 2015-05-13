@@ -1,4 +1,6 @@
 var canvas = document.getElementById("gameCanvas");
+canvas.style.cursor = "url('./Downloads/UI/uipack-space/PNG/cursor_pointerFlat.png'), auto";
+
 var context = canvas.getContext("2d");
 
 var startFrameMillis = Date.now();
